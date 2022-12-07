@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,15 +16,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/profileHome"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:src="@drawable/profile"
-            android:layout_marginRight="19dp"/>
-
         <LinearLayout
-            android:layout_width="210dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="vertical">
@@ -40,45 +34,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_bold"
-                android:text="Sabrina Lydia S"
+                android:text="Agent XAMPP"
                 android:textColor="#565656"
                 android:textSize="16dp" />
         </LinearLayout>
 
-        <ImageView
-            android:layout_gravity="center_vertical"
-            android:layout_marginEnd="0dp"
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profileHome"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginRight="19dp"
-            android:src="@drawable/notification" />
-    </LinearLayout>
-    
-    <LinearLayout
-        android:layout_marginTop="24dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        
-        <EditText
-            android:gravity="center_vertical"
-            android:textSize="12dp"
-            android:fontFamily="@font/poppins_regular"
-            android:layout_width="232dp"
-            android:layout_height="match_parent"
-            android:layout_marginRight="20dp"
-            android:paddingVertical="12dp"
-            android:paddingLeft="20dp"
-            android:drawableStart="@drawable/search_icon"
-            android:drawablePadding="20dp"
-            android:hint="Search"
-            android:textColor="#9A9A9A"
-            android:background="@drawable/form_input"/>
-
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/filter"/>
+            android:src="@drawable/profile" />
 
     </LinearLayout>
 
@@ -100,18 +70,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod? "
+                android:text="Masukkan pesan rahasia yang ingin Anda kirimkan ke agen lain"
                 android:textAlignment="center"
-                android:textSize="12dp"
+                android:textSize="16dp"
                 android:textColor="#6E6E6E"
                 android:fontFamily="@font/poppins_regular"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+                android:text="Pastikan Anda mengetahui alamat hash"
                 android:textAlignment="center"
-                android:textSize="10dp"
+                android:textSize="14dp"
                 android:fontFamily="@font/poppins_regular"
                 android:textColor="#868686"/>
 
@@ -120,8 +90,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Take Your Questionnaire"
-            android:textAllCaps="false"
+            android:text="Buat Pesan Rahasia"
             android:background="@drawable/rounded_primary2"
             android:textSize="12dp"
             android:fontFamily="@font/poppins_semibold"
@@ -152,7 +121,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/challenge"
+                android:src="@drawable/chat"
                 android:layout_marginRight="16dp"/>
 
             <LinearLayout
@@ -164,7 +133,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Mon, 17 July 2022"
+                    android:text="Pesan untuk XAMPP"
                     android:fontFamily="@font/poppins_regular"
                     android:textColor="#9E9E9E"
                     android:textSize="10dp"/>
@@ -172,7 +141,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="5 Miinutes Medication"
+                    android:text="Lihat Detail Pesan"
                     android:fontFamily="@font/poppins_semibold"
                     android:textColor="#6E6E6E"
                     android:textSize="12dp"/>
@@ -180,144 +149,16 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="You haven’t take this callenge"
+                    android:text="Klik Di sini"
                     android:fontFamily="@font/poppins_regular"
                     android:textColor="#E7783E"
                     android:textSize="10dp"/>
             </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_marginTop="24dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Your Questionnaire"
-            android:textColor="#565656"
-            android:textSize="14dp"
-            android:fontFamily="@font/poppins_semibold"
-            android:layout_marginBottom="12dp"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:background="@drawable/card"
-                android:layout_marginRight="20dp">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/mental"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Mental Health"
-                    android:paddingHorizontal="12dp"
-                    android:layout_marginTop="12dp"
-                    android:fontFamily="@font/poppins_semibold"
-                    android:textSize="12dp"
-                    android:layout_marginBottom="4dp"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="12dp"
-                    android:paddingBottom="12dp">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="10 Question"
-                        android:layout_marginRight="4dp"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textSize="10dp"
-                        android:textColor="#9E9E9E"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=" - "
-                        android:layout_marginRight="4dp"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:textSize="10dp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Mental"
-                        android:layout_marginRight="4dp"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textSize="10dp"
-                        android:textColor="#3B6AF4"/>
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:background="@drawable/card">
-
-                <ImageView
-                    android:id="@+id/dailyQuestion"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/daily"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Daily Health"
-                    android:paddingHorizontal="12dp"
-                    android:layout_marginTop="12dp"
-                    android:fontFamily="@font/poppins_semibold"
-                    android:textSize="12dp"
-                    android:layout_marginBottom="4dp"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="12dp"
-                    android:paddingBottom="12dp">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="10 Question"
-                        android:layout_marginRight="4dp"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textSize="10dp"
-                        android:textColor="#9E9E9E"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=" - "
-                        android:layout_marginRight="4dp"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:textSize="10dp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Regular"
-                        android:layout_marginRight="4dp"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textSize="10dp"
-                        android:textColor="#3B6AF4"/>
-                </LinearLayout>
-            </LinearLayout>
 
         </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>
+
+</layout>
