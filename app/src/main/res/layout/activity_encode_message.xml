@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".EncodeMessage">
+
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:background="#F7F7F9"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="24dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Good Morning,"
+                    android:textColor="#6E6E6E"
+                    android:textSize="12dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Agent XAMPP"
+                    android:textColor="#565656"
+                    android:textSize="16dp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profileHome"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/profile" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pesan"
+            android:textColor="#565656"
+            android:textSize="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:layout_marginBottom="12dp"/>
+
+        <EditText
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:padding="12dp"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="Masukkan pesan rahasia"
+            android:textColor="#9A9A9A"
+            android:background="@drawable/form_input"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lokasi (Opsional)"
+            android:textColor="#565656"
+            android:textSize="16dp"
+            android:layout_marginTop="36dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:layout_marginBottom="12dp"/>
+
+        <EditText
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:padding="12dp"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="Masukkan lokasi Anda"
+            android:textColor="#9A9A9A"
+            android:background="@drawable/form_input"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Auto Generate"
+            android:textAlignment="textEnd"
+            android:textColor="#3B6AF4"
+            android:textSize="16dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:layout_marginBottom="12dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Penerima"
+            android:textColor="#565656"
+            android:textSize="16dp"
+            android:layout_marginTop="36dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:layout_marginBottom="12dp"/>
+
+        <EditText
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:padding="12dp"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="Masukkan alamat penerima"
+            android:textColor="#9A9A9A"
+            android:background="@drawable/form_input"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Picture"
+            android:textColor="#565656"
+            android:textSize="16dp"
+            android:layout_marginTop="36dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:layout_marginBottom="12dp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/add_picture"/>
+
+        <Button
+            android:id="@+id/idGo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Encode Pesan"
+            android:layout_marginTop="48dp"
+            android:background="@drawable/rounded_primary"
+            android:textColor="#ffffff"/>
+
+    </LinearLayout>
+
+</layout>

@@ -28,5 +28,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, DaftarPesan.class));
             }
         });
+
+        binding.buatPesanRahasiaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, EncodeMessage.class));
+            }
+        });
     }
 }

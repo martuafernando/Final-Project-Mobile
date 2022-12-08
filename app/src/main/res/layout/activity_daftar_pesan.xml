@@ -73,6 +73,7 @@
             android:gravity="center">
 
             <LinearLayout
+                android:id="@+id/pesan1_card"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
@@ -189,13 +190,14 @@
     </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/decode_pesan_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Decode Pesan"
         android:textColor="#3B6AF4"
         android:textSize="15sp"
         app:backgroundTint="@android:color/white"
-        android:paddingVertical="16dp"
+        android:paddingVertical="12dp"
         app:cornerRadius="8dp"
         app:rippleColor="#33AAAAAA"
         app:strokeColor="#3B6AF4"
