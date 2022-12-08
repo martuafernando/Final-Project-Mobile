@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical"
-    android:paddingHorizontal="24dp"
-    android:paddingVertical="24dp"
+    android:padding="24dp"
     android:background="#F7F7F9">
 
     <LinearLayout
@@ -93,8 +93,7 @@
             android:text="Buat Pesan Rahasia"
             android:background="@drawable/rounded_primary2"
             android:textSize="12dp"
-            android:fontFamily="@font/poppins_semibold"
-            />
+            android:fontFamily="@font/poppins_semibold" />
     </LinearLayout>
 
     <LinearLayout
@@ -105,13 +104,14 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Daily Challenge"
+            android:text="Pesan untuk Saya"
             android:textColor="#565656"
             android:textSize="14dp"
             android:fontFamily="@font/poppins_semibold"
             android:layout_marginBottom="12dp"/>
 
         <LinearLayout
+            android:id="@+id/buttonPesan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"

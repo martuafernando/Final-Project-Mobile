@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import com.example.healthy.databinding.ActivityMainBinding;
 
@@ -20,13 +21,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         getSupportActionBar().hide();
 
-//        dailyhealth = findViewById(R.id.dailyQuestion);
-//
-//        dailyhealth.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(MainActivity.this, Questioner.class));
-//            }
-//        });
+
+        binding.buttonPesan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, DaftarPesan.class));
+            }
+        });
     }
 }
