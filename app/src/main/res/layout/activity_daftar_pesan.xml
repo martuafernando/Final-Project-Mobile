@@ -189,11 +189,20 @@
 
     </LinearLayout>
 
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:id="@+id/decode_pesan_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Decode Pesan"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/rounded_primary"
+        android:textColor="#ffffff"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/back_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Kembali"
         android:textColor="#3B6AF4"
         android:textSize="15sp"
         app:backgroundTint="@android:color/white"

@@ -33,5 +33,12 @@ public class DaftarPesan extends AppCompatActivity {
                 startActivity(new Intent(DaftarPesan.this, GetPesan.class));
             }
         });
+
+        binding.backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 }

@@ -3,6 +3,7 @@ package com.example.healthy;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.healthy.databinding.ActivityEncodeMessageBinding;
 import com.example.healthy.databinding.ActivityPilihGambarBinding;
@@ -18,5 +19,12 @@ public class PilihGambar extends AppCompatActivity {
         binding = ActivityPilihGambarBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         getSupportActionBar().hide();
+
+        binding.backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 }
