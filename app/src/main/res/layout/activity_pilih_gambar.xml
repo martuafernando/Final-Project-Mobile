@@ -54,8 +54,9 @@
     </LinearLayout>
 
     <ImageView
+        android:id="@+id/pilih_gambar_button"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="240dp"
         android:src="@drawable/pilih_gambar"
         android:layout_marginTop="48dp"/>
 
