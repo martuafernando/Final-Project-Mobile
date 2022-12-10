@@ -52,8 +52,7 @@ public class EncodeMessage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
+                intent.setAction(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                 someActivityResultLauncher.launch(intent);
             }
         });
@@ -80,9 +79,9 @@ public class EncodeMessage extends AppCompatActivity {
                 public void onActivityResult(ActivityResult result) {
                     if(result.getResultCode() == Activity.RESULT_OK){
                         Intent data = result.getData();
-                        if (data != null && data.getData() != null) {
-                            Uri selectedImageUri = data.getData();
-                            binding.addImageButton.setImageURI(selectedImageUri);
+                        if (data != null && data.getExtras().get("data") != null) {
+                            Bitmap capturedImage = (Bitmap) data.getExtras().get("data");
+                            binding.addImageButton.setImageBitmap(capturedImage);
                         }
                     }
                 }
