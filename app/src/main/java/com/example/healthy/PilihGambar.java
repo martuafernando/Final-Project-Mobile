@@ -47,6 +47,13 @@ public class PilihGambar extends AppCompatActivity {
                 someActivityResultLauncher.launch(intent);
             }
         });
+
+        binding.decodeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(PilihGambar.this, GetPesan.class));
+            }
+        });
     }
 
     ActivityResultLauncher<Intent> someActivityResultLauncher = registerForActivityResult(

@@ -34,6 +34,13 @@ public class DaftarPesan extends AppCompatActivity {
             }
         });
 
+        binding.pesan2Card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(DaftarPesan.this, GetPesan.class));
+            }
+        });
+
         binding.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -89,6 +89,7 @@ public class EncodeMessage extends AppCompatActivity {
                         if (data != null && data.getExtras().get("data") != null) {
                             Bitmap capturedImage = (Bitmap) data.getExtras().get("data");
                             binding.addImageButton.setImageBitmap(capturedImage);
+
                         }
                     }
                 }
