@@ -3,7 +3,6 @@ package com.example.healthy;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,19 +15,21 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 
-import com.example.healthy.databinding.ActivityDaftarPesanBinding;
 import com.example.healthy.databinding.ActivityEncodeMessageBinding;
-import com.example.healthy.databinding.ActivityGetPesanBinding;
 
 import java.io.IOException;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class EncodeMessage extends AppCompatActivity {
     private ActivityEncodeMessageBinding binding;
@@ -44,7 +45,35 @@ public class EncodeMessage extends AppCompatActivity {
         binding.encodeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(EncodeMessage.this, EncodeResult.class));
+                OkHttpClient client = new OkHttpClient();
+
+                RequestBody formBody = new FormBody.Builder()
+                        .add("message", String.valueOf(binding.pesanEditText.getText()))
+                        .add("secretKey", String.valueOf(binding.keyEditText.getText()))
+                        .add("latitude", binding.locationEditText.getText().toString().equals("") ? String.valueOf(0) : String.valueOf(getLatitudeFromLocationName(String.valueOf(binding.locationEditText.getText()))))
+                        .add("langitude", binding.locationEditText.getText().toString().equals("") ? String.valueOf(0) : String.valueOf(getLongitudeFromLocationName(String.valueOf(binding.locationEditText.getText()))))
+                        .build();
+
+                Request request = new Request.Builder()
+                        .url(API.domain)
+                        .method("POST", formBody)
+                        .build();
+
+                client.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        call.cancel();
+                        System.out.println("testing::" + e);
+                    }
+
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+
+                        final String myResponse = response.body().string();
+                        System.out.println("testing::" + myResponse);
+                    }
+                });
+                //                startActivity(new Intent(EncodeMessage.this, EncodeResult.class));
             }
         });
 
@@ -106,5 +135,33 @@ public class EncodeMessage extends AppCompatActivity {
         } else {
             return null;
         }
+    }
+
+    public double getLatitudeFromLocationName(String location_name){
+        try {
+            Geocoder g = new Geocoder(getBaseContext());
+            List<Address> daftar = g.getFromLocationName(location_name, 1);
+            Address alamat = daftar.get(0);
+
+            return alamat.getLatitude();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public double getLongitudeFromLocationName(String location_name){
+        try {
+            Geocoder g = new Geocoder(getBaseContext());
+            List<Address> daftar = g.getFromLocationName(location_name, 1);
+            Address alamat = daftar.get(0);
+
+            return alamat.getLongitude();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 }
