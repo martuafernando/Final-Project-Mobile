@@ -15,17 +15,28 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.text.format.DateFormat;
 import android.view.View;
 
 import com.example.healthy.databinding.ActivityEncodeMessageBinding;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URI;
+import java.util.Date;
 import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -33,6 +44,7 @@ import okhttp3.Response;
 
 public class EncodeMessage extends AppCompatActivity {
     private ActivityEncodeMessageBinding binding;
+    private File captured_image_file;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,15 +59,20 @@ public class EncodeMessage extends AppCompatActivity {
             public void onClick(View view) {
                 OkHttpClient client = new OkHttpClient();
 
-                RequestBody formBody = new FormBody.Builder()
-                        .add("message", String.valueOf(binding.pesanEditText.getText()))
-                        .add("secretKey", String.valueOf(binding.keyEditText.getText()))
-                        .add("latitude", binding.locationEditText.getText().toString().equals("") ? String.valueOf(0) : String.valueOf(getLatitudeFromLocationName(String.valueOf(binding.locationEditText.getText()))))
-                        .add("langitude", binding.locationEditText.getText().toString().equals("") ? String.valueOf(0) : String.valueOf(getLongitudeFromLocationName(String.valueOf(binding.locationEditText.getText()))))
+                RequestBody formBody = new MultipartBody.Builder()
+                        .setType(MultipartBody.FORM)
+                        .addFormDataPart("message", String.valueOf(binding.pesanEditText.getText()))
+                        .addFormDataPart("secretKey", String.valueOf(binding.keyEditText.getText()))
+                        .addFormDataPart("latitude", binding.locationEditText.getText().toString().equals("") ? String.valueOf(0) : String.valueOf(getLatitudeFromLocationName(String.valueOf(binding.locationEditText.getText()))))
+                        .addFormDataPart("langitude", binding.locationEditText.getText().toString().equals("") ? String.valueOf(0) : String.valueOf(getLongitudeFromLocationName(String.valueOf(binding.locationEditText.getText()))))
+
+                        .addFormDataPart("gambar", captured_image_file.getName(),
+                                RequestBody.create(MediaType.parse("application/octet-stream"),
+                                captured_image_file))
                         .build();
 
                 Request request = new Request.Builder()
-                        .url(API.domain)
+                        .url(API.encodeMessage)
                         .method("POST", formBody)
                         .build();
 
@@ -116,8 +133,29 @@ public class EncodeMessage extends AppCompatActivity {
                     if(result.getResultCode() == Activity.RESULT_OK){
                         Intent data = result.getData();
                         if (data != null && data.getExtras().get("data") != null) {
+                            try {
                             Bitmap capturedImage = (Bitmap) data.getExtras().get("data");
-                            binding.addImageButton.setImageBitmap(capturedImage);
+
+                            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+
+                            capturedImage.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                            byte[] byteArray = stream.toByteArray(); // convert camera photo to byte array
+
+                            // save it in your external storage.
+                            File dir=  Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
+                            Date d = new Date();
+                            CharSequence s  = DateFormat.format("MM-dd-yy hh-mm-ss", d.getTime());
+                            File output=new File(dir, s + ".png");
+                            FileOutputStream fo = new FileOutputStream(output);
+                            fo.write(byteArray);
+                            fo.flush();
+                            fo.close();
+                            captured_image_file = output;
+                            binding.addImageButton.setImageURI(Uri.fromFile(output));
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
 
                         }
                     }
