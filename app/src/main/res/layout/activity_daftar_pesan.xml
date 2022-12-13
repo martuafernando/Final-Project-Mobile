@@ -83,6 +83,7 @@
                 android:layout_marginRight="20dp">
 
                 <ImageView
+                    android:id="@+id/gambar_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:src="@drawable/mental"/>
