@@ -155,8 +155,6 @@ public class EncodeMessage extends AppCompatActivity {
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-
-
                         }
                     }
                 }

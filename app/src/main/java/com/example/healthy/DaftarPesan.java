@@ -37,7 +37,7 @@ public class DaftarPesan extends AppCompatActivity {
         Picasso.get().load("https://i.imgur.com/DvpvklR.png").into(binding.gambar1);
 
         Request request = new Request.Builder()
-                .url(API.encodeMessage)
+                .url(API.daftarPesan)
                 .method("GET", null)
                 .build();
 

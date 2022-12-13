@@ -60,6 +60,28 @@
         android:src="@drawable/pilih_gambar"
         android:layout_marginTop="48dp"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Key"
+        android:textColor="#565656"
+        android:textSize="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:layout_marginBottom="12dp"/>
+
+    <EditText
+        android:id="@+id/key_edit_text"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:padding="12dp"
+        android:fontFamily="@font/poppins_regular"
+        android:hint="Masukkan key rahasia"
+        android:textColor="#9A9A9A"
+        android:background="@drawable/form_input"/>
+
     <Button
         android:id="@+id/decode_button"
         android:layout_width="match_parent"
