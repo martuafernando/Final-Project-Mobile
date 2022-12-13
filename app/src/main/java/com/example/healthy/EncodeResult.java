@@ -8,43 +8,68 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.format.DateFormat;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.healthy.databinding.ActivityEncodeMessageBinding;
-import com.example.healthy.databinding.ActivityPilihGambarBinding;
+import com.example.healthy.databinding.ActivityEncodeResultBinding;
+import com.squareup.picasso.Picasso;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Date;
 
 public class EncodeResult extends AppCompatActivity {
-    private ActivityPilihGambarBinding binding;
+    private ActivityEncodeResultBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pilih_gambar);
 
-        binding = ActivityPilihGambarBinding.inflate(getLayoutInflater());
+        binding = ActivityEncodeResultBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         getSupportActionBar().hide();
 
-        binding.backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        String imageFile = getIntent().getStringExtra("imageFile");
+        System.out.println("testingResult::" + imageFile);
 
-        binding.pilihGambarButton.setOnClickListener(new View.OnClickListener() {
+        Picasso.get().load(API.domain + "/" + imageFile).into(binding.pilihGambarButton);
+        System.out.println("testing" + API.domain + "/" + imageFile);
+
+        binding.simpanButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent();
-                Uri uri = Uri.parse(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath() + File.separator + "Secreto" + File.separator);
-                intent.setDataAndType(uri, "image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                someActivityResultLauncher.launch(intent);
+                try {
+                    BitmapDrawable draw = (BitmapDrawable) binding.pilihGambarButton.getDrawable();
+                    Bitmap capturedImage = draw.getBitmap();
+
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+
+                    capturedImage.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                    byte[] byteArray = stream.toByteArray(); // convert camera photo to byte array
+
+                    // save it in your external storage.
+                    File dir= new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + File.separator + "Encoded");
+                    String[] imageFileOlah = imageFile.split("/");
+                    File output=new File(dir, imageFileOlah[imageFileOlah.length-1]);
+                    FileOutputStream fo = new FileOutputStream(output);
+                    fo.write(byteArray);
+                    fo.flush();
+                    fo.close();
+                    Toast.makeText(EncodeResult.this, "Gambar Disimpan", Toast.LENGTH_SHORT).show();
+                    finish();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }

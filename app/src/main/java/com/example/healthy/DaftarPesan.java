@@ -10,6 +10,9 @@ import com.example.healthy.databinding.ActivityDaftarPesanBinding;
 import com.example.healthy.databinding.ActivityMainBinding;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 
 import okhttp3.Call;
@@ -32,12 +35,12 @@ public class DaftarPesan extends AppCompatActivity {
         setContentView(binding.getRoot());
         getSupportActionBar().hide();
 
-        OkHttpClient client = new OkHttpClient();
-
         Picasso.get().load("https://i.imgur.com/DvpvklR.png").into(binding.gambar1);
 
+        OkHttpClient client = new OkHttpClient();
+
         Request request = new Request.Builder()
-                .url(API.encodeMessage)
+                .url(API.daftarPesan)
                 .method("GET", null)
                 .build();
 
@@ -53,6 +56,12 @@ public class DaftarPesan extends AppCompatActivity {
 
                 final String myResponse = response.body().string();
                 System.out.println("testing::" + myResponse);
+                try {
+                    JSONObject reader = new JSONObject(myResponse);
+                    System.out.println("data::" + reader.getString("imageFile"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
 

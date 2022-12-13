@@ -19,18 +19,26 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.text.format.DateFormat;
+import android.util.JsonReader;
 import android.view.View;
 
 import com.example.healthy.databinding.ActivityEncodeMessageBinding;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.json.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URI;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -63,8 +71,10 @@ public class EncodeMessage extends AppCompatActivity {
                         .setType(MultipartBody.FORM)
                         .addFormDataPart("message", String.valueOf(binding.pesanEditText.getText()))
                         .addFormDataPart("secretKey", String.valueOf(binding.keyEditText.getText()))
+                        .addFormDataPart("recipient", String.valueOf(binding.penerimaEditText.getText()))
                         .addFormDataPart("latitude", binding.locationEditText.getText().toString().equals("") ? String.valueOf(0) : String.valueOf(getLatitudeFromLocationName(String.valueOf(binding.locationEditText.getText()))))
                         .addFormDataPart("langitude", binding.locationEditText.getText().toString().equals("") ? String.valueOf(0) : String.valueOf(getLongitudeFromLocationName(String.valueOf(binding.locationEditText.getText()))))
+                        .addFormDataPart("sender", API.userAddress)
 
                         .addFormDataPart("gambar", captured_image_file.getName(),
                                 RequestBody.create(MediaType.parse("application/octet-stream"),
@@ -87,10 +97,17 @@ public class EncodeMessage extends AppCompatActivity {
                     public void onResponse(Call call, Response response) throws IOException {
 
                         final String myResponse = response.body().string();
-                        System.out.println("testing::" + myResponse);
+                        try {
+                            JSONObject obj = new JSONObject(myResponse);
+                            Intent intent = new Intent(EncodeMessage.this, EncodeResult.class);
+                            intent.putExtra("imageFile", obj.getString("imageFile"));
+                            startActivity(intent);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
-                //                startActivity(new Intent(EncodeMessage.this, EncodeResult.class));
             }
         });
 
@@ -155,8 +172,6 @@ public class EncodeMessage extends AppCompatActivity {
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-
-
                         }
                     }
                 }

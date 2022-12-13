@@ -79,13 +79,14 @@
             android:layout_marginBottom="12dp"/>
 
         <EditText
+            android:id="@+id/pesan_edit_text"
             android:gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="14sp"
             android:padding="12dp"
             android:fontFamily="@font/poppins_regular"
-            android:hint="Masukkan pesan rahasia"
+            android:hint="Pesan rahasia untuk kamu"
             android:textColor="#9A9A9A"
             android:clickable="false"
             android:background="@drawable/form_input"/>

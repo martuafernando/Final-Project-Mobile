@@ -61,27 +61,13 @@
             android:layout_marginTop="48dp"/>
 
         <Button
-            android:id="@+id/idGo"
+            android:id="@+id/simpan_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Simpan Gambar"
             android:layout_marginTop="48dp"
             android:background="@drawable/rounded_primary"
             android:textColor="#ffffff"/>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/back_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Kembali"
-            android:textColor="#3B6AF4"
-            android:textSize="15sp"
-            app:backgroundTint="@android:color/white"
-            android:paddingVertical="12dp"
-            app:cornerRadius="8dp"
-            app:rippleColor="#33AAAAAA"
-            app:strokeColor="#3B6AF4"
-            app:strokeWidth="2dp" />
 
     </LinearLayout>
 
